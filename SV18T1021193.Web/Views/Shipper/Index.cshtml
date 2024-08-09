@@ -1,0 +1,57 @@
+﻿@model SV18T1021193.Web.Models.PaginationSearchInput
+@{
+    ViewBag.Title = "Người giao hàng";
+}
+<div class="box">
+    <div class="box-header with-border">
+    </div>
+    <div class="box-body">
+        <form action="~/shipper/search" id="searchInput">
+            @Html.HiddenFor(m => m.PageSize)
+            <div class="input-group">
+                <input type="text" name="searchvalue"
+                       class="form-control"
+                       placeholder="Nhập tên hoặc địa chỉ cần tìm"
+                       autofocus value="@Model.SearchValue">
+                <span class="input-group-btn">
+                    <button type="submit"
+                            id="search-btn"
+                            class="btn btn-flat btn-info">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <a href="~/shipper/create"
+                       class="btn btn-flat btn-primary"
+                       style="margin-left:10px">
+                        <i class="fa fa-plus"></i>
+                        Bổ sung
+                    </a>
+                </span>
+
+            </div>
+        </form>
+        <div id="searchResult">
+
+        </div>
+
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/Search.js"></script>
+    <script>
+        $(document).ready(function () {
+            doSearch(@Model.Page);
+            $("#searchInput").submit(function (e) {
+                e.preventDefault();
+                doSearch(1);
+                return false;
+            });
+        });
+
+
+
+
+    </script>
+}
+
+
